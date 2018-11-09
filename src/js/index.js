@@ -9,6 +9,7 @@ import 'pixi-sound'  //有依赖关系的是这样子引入的就行
 import resize from './tool/resize.js'; //屏幕适配
 import getAllMaterial from './tool/getAllMaterial.js'; 
 import getAllStage from './tool/getAllStage.js'; 
+import getLoadingStage from './tool/getLoadingStage.js'; 
 
 //自定义字体加载
 WebFont.load({custom: {families: ['monogram']}});
@@ -35,55 +36,6 @@ resize(app);
 
 
 /********************************************************************
- * 场景布局                                                          *
- ********************************************************************/
- 
-//加载声音前的loading场景
-function stage0(){
-  var res = PIXI.loader.resources;
-  var characterAnimation = res['characterAnimation'].data;
-  //进度条(图形)
-  var sourceArr = characterAnimation['loadingBox.json']['loadingBox'];
-  var frames = [];
-  for (var i = 0; i < sourceArr.length; i++) {
-      frames.push(PIXI.Texture.fromFrame( sourceArr[i] ));
-  }
-  var mc = new PIXI.extras.AnimatedSprite(frames);
-  mc.name="loadingBox";
-  mc.x = w / 2;
-  mc.y = h / 2;
-  mc.anchor.set(0.5);
-  mc.animationSpeed = 0.25
-  mc.play();
-  //进度条（文字）
-  var progressTextMC = new PIXI.Text(progress,{
-    fontSize: 60,
-    fill: 0x000,
-    align: 'left'
-  });
-  progressTextMC.anchor.set(.5)
-  progressTextMC.x = w/2;
-  progressTextMC.y = 700;
-  progressTextMC.name="progressText"
-  //背景图
-  var img = new PIXI.Sprite(res.background.texture)
-  img.height = h;
-
-  var stage0 = new PIXI.Container(); 
-  stage0.name = "stage0"
-  stage0.removeChildren(0, stage0.children.length);
-  stage0.addChild(
-    img,mc,progressTextMC
-  );
-  //使用场景对应的ticker
-  myTicker = stage0_ticker;
-  return stage0;
-}
-
-
-
-
-/********************************************************************
  * ticker                                                          *
  ********************************************************************/
 function stage0_ticker(delta){
@@ -93,7 +45,6 @@ function stage1_ticker(delta){}
 function stage2_ticker(delta){}
 
 
-
 /********************************************************************
  * 游戏入口                                                          *
  ********************************************************************/
@@ -101,12 +52,16 @@ function stage2_ticker(delta){}
 //我已经尝试使用promise，似乎并不能在代码上进行优化，所以还是用这里的
 
 PIXI.loader
+  //优先加载一部分图片，用来做资源加载页
   .add("characterAnimation", "./img/characterAnimation.json") 
   .add("background", "./img/bg.jpg")
   .add("loadingBox", "./img/loader.json")
   .load(function(xxx,res){
-    //优先加载一部分图片，用来做资源加载页
+
+    //加载场景
+    const {stage0} = getLoadingStage(app,progress);
     app.stage.addChild( stage0() );
+    myTicker = stage0_ticker
 
     //剩余资源加载
     PIXI.loader
@@ -119,8 +74,6 @@ PIXI.loader
         progress = 'Loading...'+ Math.round(myLoader.progress) +'%';
       });
   });
-
-
 
 
 /********************************************************************
