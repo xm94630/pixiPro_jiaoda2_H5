@@ -38,7 +38,7 @@ app.view.style.position = "absolute";
 app.view.style.display = "block";
 app.ticker.add(function(delta) {myTicker(delta);});
 document.body.appendChild(app.view);
-resize(app,w,h);
+resize(app);
 
 
 
@@ -87,7 +87,7 @@ function stage0_layout(res){
 
 //场景布局1
 function stage1_layout(res){
-  const{bgImg,soundBtnMC,viewBtnMC,page01Img} = getAllMaterial(app,w,h,res);
+  const{bgImg,soundBtnMC,viewBtnMC,page01Img} = getAllMaterial(app);
   stage1.removeChildren(0, stage1.children.length);
   stage1.addChild(
     bgImg(),
@@ -100,7 +100,7 @@ function stage2_layout(res){
   const{
     bookMC,
     homeBtnMC,
-  } = getAllMaterial(app,w,h,res);
+  } = getAllMaterial(app);
   stage2.removeChildren(0, stage2.children.length);
   stage2.addChild(
     bookMC(),
@@ -164,7 +164,7 @@ function setup(xxx,res) {
   stage2_layout(res);
   
   //舞台显示 (容器挂载)
-  const{soundBtnMC} = getAllMaterial(app,w,h,res);
+  const{soundBtnMC} = getAllMaterial(app);
   app.stage.removeChild(app.stage.getChildByName('stage0')); //移除（后续不会再用）
   app.stage.addChild(stage1,stage2,soundBtnMC());
   app.stage.getChildByName('stage1').visible = true;
@@ -178,5 +178,5 @@ function setup(xxx,res) {
 /********************************************************************
  * 事件绑定                                                          *
  ********************************************************************/
-window.addEventListener('resize', function(){resize(app,w,h)});
+window.addEventListener('resize', function(){resize(app)});
 console.log('=======>')

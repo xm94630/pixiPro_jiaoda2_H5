@@ -1,6 +1,9 @@
-//参数：pixi实例、宽、高、加载的资源
+//参数：pixi实例
+export default function getAllMaterial(app){
 
-export default function getAllMaterial(app,w,h,res){
+  var w = app.view.width;
+  var h = app.view.height;
+  var res = PIXI.loader.resources;
 
   //这个配置文件是对所有动画json文件的维护，使用起来非常方便
   var characterAnimation = res['characterAnimation'].data;

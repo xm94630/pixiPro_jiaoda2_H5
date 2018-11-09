@@ -1,5 +1,9 @@
-//参数：pixi实例、宽、高
-export default function resize(app,w,h){
+//参数：pixi实例
+export default function resize(app){
+
+  var w = app.view.width;
+  var h = app.view.height;
+
   var ratio = Math.min(window.innerWidth/w,window.innerHeight/h);
   app.view.style.width = Math.ceil(w * ratio) + "px";
   app.view.style.height = Math.ceil(h * ratio) + "px";
