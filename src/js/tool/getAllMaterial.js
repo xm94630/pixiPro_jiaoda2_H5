@@ -35,6 +35,10 @@ export default function getAllMaterial(app){
       return mc;
     },
     soundBtnMC:function(){
+      //声音
+      var mySound = res.bgmSound.sound;
+      mySound && mySound.play();
+      
       var sourceArr = characterAnimation['button.json']['soundBtn']
       var frameArr=[];
       for (var i = 0; i < sourceArr.length; i++) {

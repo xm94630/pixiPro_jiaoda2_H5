@@ -8,26 +8,20 @@ import 'pixi-sound'  //有依赖关系的是这样子引入的就行
 //import T from './tool/tweenFun.js';
 import resize from './tool/resize.js'; //屏幕适配
 import getAllMaterial from './tool/getAllMaterial.js'; 
+import stage from './tool/stage.js'; 
 
 //自定义字体加载
 WebFont.load({custom: {families: ['monogram']}});
-
 
 
 /********************************************************************
  * 全局变量                                                          *
  ********************************************************************/
 var w = 750;                        //宽
-var h = 1200;                       //高
-var mySound;                        //声音
+var h = 1200;                       //高                       
 var progress;                       //进度
 var myTicker = function(){}         //空的ticker
 var stage0 = new PIXI.Container();  //容器0（加载页）
-var stage1 = new PIXI.Container();  //容器1（游戏首页）
-var stage2 = new PIXI.Container();  //容器2（游戏内容页）
-stage1.name = "stage1"              //容器1名字
-stage2.name = "stage2"              //容器2名字
-
 
 
 /********************************************************************
@@ -39,7 +33,6 @@ app.view.style.display = "block";
 app.ticker.add(function(delta) {myTicker(delta);});
 document.body.appendChild(app.view);
 resize(app);
-
 
 
 /********************************************************************
@@ -85,28 +78,7 @@ function stage0_layout(res){
   myTicker = stage0_ticker;
 }
 
-//场景布局1
-function stage1_layout(res){
-  const{bgImg,soundBtnMC,viewBtnMC,page01Img} = getAllMaterial(app);
-  stage1.removeChildren(0, stage1.children.length);
-  stage1.addChild(
-    bgImg(),
-    viewBtnMC(),
-  );
-}
 
-//场景布局2
-function stage2_layout(res){   
-  const{
-    bookMC,
-    homeBtnMC,
-  } = getAllMaterial(app);
-  stage2.removeChildren(0, stage2.children.length);
-  stage2.addChild(
-    bookMC(),
-    homeBtnMC(),
-  );
-}
 
 
 /********************************************************************
@@ -156,16 +128,17 @@ PIXI.loader
 function setup(xxx,res) {
   
   //声音
-  mySound = res.bgmSound.sound;
+  const mySound = res.bgmSound.sound;
   mySound && mySound.play();
 
-  //场景布局（创建容器）
-  stage1_layout(res);
-  stage2_layout(res);
+  //获取场景实例（容器）
+  const stage1 = stage.getStage1(app);
+  const stage2 = stage.getStage2(app);
+  //获取影片剪辑
+  const{soundBtnMC} = getAllMaterial(app);
   
   //舞台显示 (容器挂载)
-  const{soundBtnMC} = getAllMaterial(app);
-  app.stage.removeChild(app.stage.getChildByName('stage0')); //移除（后续不会再用）
+  app.stage.removeChild(app.stage.getChildByName('stage0')); //移除loading场景（后续不会再用）
   app.stage.addChild(stage1,stage2,soundBtnMC());
   app.stage.getChildByName('stage1').visible = true;
   app.stage.getChildByName('stage2').visible = false;
