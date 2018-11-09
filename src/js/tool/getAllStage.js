@@ -1,9 +1,8 @@
-import getAllMaterial from './getAllMaterial.js'; 
-
-
 /********************************************************************
- * 场景（容器）                                                          *
+ * 场景（容器）                                                       *
  ********************************************************************/
+
+import getAllMaterial from './getAllMaterial.js'; 
 export default function(app){
   //获取容器1（游戏首页）
   function stage1(){

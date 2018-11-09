@@ -21,7 +21,6 @@ var w = 750;                        //宽
 var h = 1200;                       //高                       
 var progress;                       //进度
 var myTicker = function(){}         //空的ticker
-var stage0 = new PIXI.Container();  //容器0（加载页）
 
 
 /********************************************************************
@@ -40,7 +39,8 @@ resize(app);
  ********************************************************************/
  
 //加载声音前的loading场景
-function stage0_layout(res){
+function stage0(){
+  var res = PIXI.loader.resources;
   var characterAnimation = res['characterAnimation'].data;
   //进度条(图形)
   var sourceArr = characterAnimation['loadingBox.json']['loadingBox'];
@@ -69,6 +69,7 @@ function stage0_layout(res){
   var img = new PIXI.Sprite(res.background.texture)
   img.height = h;
 
+  var stage0 = new PIXI.Container(); 
   stage0.name = "stage0"
   stage0.removeChildren(0, stage0.children.length);
   stage0.addChild(
@@ -76,6 +77,7 @@ function stage0_layout(res){
   );
   //使用场景对应的ticker
   myTicker = stage0_ticker;
+  return stage0;
 }
 
 
@@ -85,7 +87,7 @@ function stage0_layout(res){
  * ticker                                                          *
  ********************************************************************/
 function stage0_ticker(delta){
-  stage0.getChildByName('progressText').text = progress;
+  app.stage.getChildByName('stage0').getChildByName('progressText').text = progress;
 }
 function stage1_ticker(delta){}
 function stage2_ticker(delta){}
@@ -104,8 +106,7 @@ PIXI.loader
   .add("loadingBox", "./img/loader.json")
   .load(function(xxx,res){
     //优先加载一部分图片，用来做资源加载页
-    stage0_layout(res);
-    app.stage.addChild(stage0);
+    app.stage.addChild( stage0() );
 
     //剩余资源加载
     PIXI.loader

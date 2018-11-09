@@ -1,6 +1,8 @@
-//参数：pixi实例
-export default function getAllMaterial(app){
+/********************************************************************
+ * 影片剪辑                                                          *
+ ********************************************************************/
 
+export default function getAllMaterial(app){
   var w = app.view.width;
   var h = app.view.height;
   var res = PIXI.loader.resources;
