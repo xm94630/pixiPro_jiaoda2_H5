@@ -8,7 +8,7 @@ import 'pixi-sound'  //有依赖关系的是这样子引入的就行
 //import T from './tool/tweenFun.js';
 import resize from './tool/resize.js'; //屏幕适配
 import getAllMaterial from './tool/getAllMaterial.js'; 
-import stage from './tool/stage.js'; 
+import getAllStage from './tool/getAllStage.js'; 
 
 //自定义字体加载
 WebFont.load({custom: {families: ['monogram']}});
@@ -131,15 +131,13 @@ function setup(xxx,res) {
   const mySound = res.bgmSound.sound;
   mySound && mySound.play();
 
-  //获取场景实例（容器）
-  const stage1 = stage.getStage1(app);
-  const stage2 = stage.getStage2(app);
-  //获取影片剪辑
-  const{soundBtnMC} = getAllMaterial(app);
+  //获取场景实例、影片剪辑
+  const {stage1,stage2} = getAllStage(app);
+  const {soundBtnMC}    = getAllMaterial(app);
   
   //舞台显示 (容器挂载)
   app.stage.removeChild(app.stage.getChildByName('stage0')); //移除loading场景（后续不会再用）
-  app.stage.addChild(stage1,stage2,soundBtnMC());
+  app.stage.addChild(stage1(),stage2(),soundBtnMC());
   app.stage.getChildByName('stage1').visible = true;
   app.stage.getChildByName('stage2').visible = false;
 
