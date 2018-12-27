@@ -16,6 +16,8 @@ export default function getAllMaterial(app){
       var img = new PIXI.Sprite(res.background.texture);
       return img;
     },
+
+    //观看按钮
     viewBtnMC:function(){
       var sourceArr = characterAnimation['button.json']['viewBtn'];
       var frameArr=[];
@@ -23,8 +25,8 @@ export default function getAllMaterial(app){
         frameArr.push(PIXI.Texture.fromFrame( sourceArr[i] ));
       }
       var mc = new PIXI.extras.AnimatedSprite(frameArr);
-      mc.x = w-mc.width/2-12;
-      mc.y = mc.height/2+892;
+      //mc.x = w-mc.width/2-12;
+      //mc.y = mc.height/2+892;
       mc.anchor.set(0.5);
       mc.gotoAndStop(0); 
       mc.interactive = true;
@@ -36,6 +38,7 @@ export default function getAllMaterial(app){
       });
       return mc;
     },
+
     soundBtnMC:function(){
       //声音
       var mySound = res.bgmSound.sound;
@@ -168,6 +171,8 @@ export default function getAllMaterial(app){
       });
       return txt;
     }
+
+
 
 
 
