@@ -96,6 +96,8 @@ export default function getAllMaterial(app){
       mc.height = h; 
       return mc;
     },
+
+    //返回主页
     homeBtnMC:function(){
       var mc = PIXI.Sprite.fromImage("icon-exit.png");
       mc.x = mc.width/2+30;
@@ -111,7 +113,66 @@ export default function getAllMaterial(app){
       });
       return mc;
     }
+
+    //按钮_首页_开始游戏
+    ,gameStartBtnMC:function(){
+      var txt = new PIXI.Text('开始游戏',{
+        fontSize: 60,
+        fill: 0x000,
+        align: 'left'
+      });
+      txt.anchor.set(.5)
+      txt.x = w/2;
+      txt.y = 200;
+      txt.interactive = true;
+      txt.buttonMode = true;
+      txt.on('pointerdown', function(){
+        app.stage.getChildByName('stage1').visible = false;
+        app.stage.getChildByName('stage2').visible = true;
+      });
+      return txt;
+    }
+
+    //按钮_首页_继续游戏
+    ,gameContinueBtnMC:function(){
+      var txt = new PIXI.Text('继续游戏',{
+        fontSize: 60,
+        fill: 0x000,
+        align: 'left'
+      });
+      txt.anchor.set(.5)
+      txt.x = w/2;
+      txt.y = 400;
+      txt.interactive = true;
+      txt.buttonMode = true;
+      txt.on('pointerdown', function(){
+        alert(222);
+      });
+      return txt;
+    }
+
+    //按钮_首页_退出游戏
+    ,gameExitBtnMC:function(){
+      var txt = new PIXI.Text('退出游戏',{
+        fontSize: 60,
+        fill: 0x000,
+        align: 'left'
+      });
+      txt.anchor.set(.5)
+      txt.x = w/2;
+      txt.y = 600;
+      txt.interactive = true;
+      txt.buttonMode = true;
+      txt.on('pointerdown', function(){
+        alert(333);
+      });
+      return txt;
+    }
+
+
+
   }
+  
   return list;
 }
 
