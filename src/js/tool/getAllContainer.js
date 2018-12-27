@@ -27,6 +27,7 @@ export default function(app){
     const containerBg = new PIXI.Sprite(PIXI.Texture.WHITE);
     containerBg.width  = container._width;   //注意，这里获取的不是container.width
     containerBg.height = container._height;  
+    containerBg.interactive = true; //这个要有，否者被该模块挡住的别的按钮啥的还会响应，这个有了就被盖住了。
     //添加
     container.addChild(
       containerBg, //背景一定要先添加
