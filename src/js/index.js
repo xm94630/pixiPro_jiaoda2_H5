@@ -70,6 +70,7 @@ PIXI.loader
       .add("buttons", "./img/buttons.json")
       .add("bg2", "./img/bg2.jpg")
       .add("portraitBox", "./img/portrait.json")   //坑：注意，这里加载的是json，不是图片！
+      .add("arrow", "./img/arrow.json")   
       .load(setup)
       .onProgress.add((myLoader,res) => {
         progress = 'Loading...'+ Math.round(myLoader.progress) +'%';

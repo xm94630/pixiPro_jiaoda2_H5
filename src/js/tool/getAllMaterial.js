@@ -188,6 +188,25 @@ export default function getAllMaterial(app){
       return mc;
     }
 
+    //向左箭头
+    ,arrowLeftMC:function(x,y){
+      var texture = PIXI.Texture.from( 'arrow_left.png' ) //获取合成图中的素材，只需要传入名字就行，不用像做动画那么麻烦
+      var img = new PIXI.Sprite(texture);            
+      img.anchor.set(0.5)
+      img.interactive = true; 
+      return img;
+    }
+
+    //向右箭头
+    ,arrowRightMC:function(x,y){
+      var texture = PIXI.Texture.from( 'arrow_right.png' ) 
+      var img = new PIXI.Sprite(texture);            
+      img.anchor.set(0.5)
+      img.interactive = true; 
+      return img;
+    }
+
+
 
 
 

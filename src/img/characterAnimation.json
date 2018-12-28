@@ -28,10 +28,18 @@
             "bar_6.png"
         ]
     }
+    
     ,"portrait.json": {
         "portraitBox": [
             "portrait_01.png",
             "portrait_02.png"
+        ]
+    }
+
+    ,"arrow.json": {
+        "arrow": [
+            "arrow_left.png",
+            "arrow_right.png"
         ]
     }
 }
