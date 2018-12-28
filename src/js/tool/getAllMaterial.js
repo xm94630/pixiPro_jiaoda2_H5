@@ -172,6 +172,22 @@ export default function getAllMaterial(app){
       return txt;
     }
 
+    //头像
+    ,portraitMC:function(x,y){
+      var sourceArr = characterAnimation['portrait.json']['portraitBox'];
+      var frameArr=[];
+      for (var i = 0; i < sourceArr.length; i++) {
+        frameArr.push(PIXI.Texture.fromFrame( sourceArr[i] ));
+      }
+      var mc = new PIXI.extras.AnimatedSprite(frameArr);
+      mc.gotoAndStop(1); 
+      mc.scale.x = mc.scale.y = 3;
+      mc.anchor.set(0.5);
+      mc.x = x;
+      mc.y = y;
+      return mc;
+    }
+
 
 
 

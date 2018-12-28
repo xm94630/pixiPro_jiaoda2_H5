@@ -14,24 +14,25 @@ export default function(app){
   function selectPortraitContainer(){
     //素材
     const{
-      viewBtnMC,
+      portraitMC
     } = getAllMaterial(app);
     //容器
     const container = new PIXI.Container();  
     container.name = "selectPortraitContainer"     
-    container.width = 400;     
-    container.height = 400;
+    container.width = 700;     
+    container.height = 300;
     container.x = (w-container._width)/2;
     container.y = (h-container._height)/2;
     //背景色
-    const containerBg = new PIXI.Sprite(PIXI.Texture.WHITE);
+    const containerBg = new PIXI.Sprite(PIXI.Texture.WHITE); //使用这个的时候，方便直观看到容器的区域
+    //const containerBg = new PIXI.Sprite(PIXI.Texture.EMPTY);
     containerBg.width  = container._width;   //注意，这里获取的不是container.width
     containerBg.height = container._height;  
     containerBg.interactive = true; //这个要有，否者被该模块挡住的别的按钮啥的还会响应，这个有了就被盖住了。
     //添加
     container.addChild(
       containerBg, //背景一定要先添加
-      viewBtnMC(),
+      portraitMC(container._width/2,container._height/2),  //头像
     );
     return container;
   }
