@@ -55,8 +55,6 @@ export default function(app){
       container.getChildByName('portrait').gotoAndStop(n);
     });
 
-
-
     //添加
     container.addChild(
       containerBg, //背景一定要先添加
