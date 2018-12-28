@@ -1,6 +1,8 @@
 /********************************************************************
  * 影片剪辑                                                          *
  ********************************************************************/
+import player from './playerData';
+
 
 export default function getAllMaterial(app){
   var w = app.view.width;

@@ -3,6 +3,9 @@
  ********************************************************************/
 
 import getAllMaterial from './getAllMaterial.js'; 
+import player from './playerData.js';
+console.log('===>1')
+console.log(player)
 
 export default function(app){
 
@@ -20,6 +23,11 @@ export default function(app){
       arrowLeftMC,
       arrowRightMC,
     } = getAllMaterial(app);
+    //头像图片和性别的映射关系
+    let portrait2gender = {
+      "0":0, //前面的0是指第“0”张头像图片，对应值为0（男）
+      "1":1,
+    }
     //容器
     const container = new PIXI.Container();  
     container.name = "selectPortraitContainer"     
@@ -44,15 +52,23 @@ export default function(app){
       n--;
       if(n<0){n=totalFrames-1;}
       container.getChildByName('portrait').gotoAndStop(n);
+      player.gender     = portrait2gender[n] || 0  //这个是刚从别人学来的，比if、else更加高效
+      player.portraitId = n 
+      console.log('===>2')
+      console.log(player)
     });
     //获取右箭头实例
     const arrowRight = arrowRightMC();
     arrowRight.x = container._width - arrowRight.width/2;
     arrowRight.y = container._height/2;
     arrowRight.on('pointerdown', function(){
-      n--;
+      n++;
       if(n>totalFrames-1){n=0;}
       container.getChildByName('portrait').gotoAndStop(n);
+      player.gender = portrait2gender[n] || 0  //这个是刚从别人学来的，比if、else更加高效
+      player.portraitId = n 
+      console.log('===>3')
+      console.log(player)
     });
 
     //添加
