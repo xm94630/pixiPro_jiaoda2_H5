@@ -32,7 +32,8 @@
     ,"portrait.json": {
         "portraitBox": [
             "portrait_01.png",
-            "portrait_02.png"
+            "portrait_02.png",
+            "portrait_03.png"
         ]
     }
 

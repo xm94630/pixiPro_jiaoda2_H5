@@ -4,8 +4,6 @@
 
 import getAllMaterial from './getAllMaterial.js'; 
 import player from './playerData.js';
-console.log('===>1')
-console.log(player)
 
 export default function(app){
 
@@ -26,7 +24,8 @@ export default function(app){
     //头像图片和性别的映射关系
     let portrait2gender = {
       "0":0, //前面的0是指第“0”张头像图片，对应值为0（男）
-      "1":1,
+      "1":0,
+      "2":1,
     }
     //容器
     const container = new PIXI.Container();  
@@ -36,8 +35,8 @@ export default function(app){
     container.x = (w-container._width)/2;
     container.y = (h-container._height)/2;
     //背景色
-    const containerBg = new PIXI.Sprite(PIXI.Texture.WHITE); //使用这个的时候，方便直观看到容器的区域
-    //const containerBg = new PIXI.Sprite(PIXI.Texture.EMPTY);
+    //const containerBg = new PIXI.Sprite(PIXI.Texture.WHITE); //使用这个的时候，方便直观看到容器的区域
+    const containerBg = new PIXI.Sprite(PIXI.Texture.EMPTY);
     containerBg.width  = container._width;   //注意，这里获取的不是container.width
     containerBg.height = container._height;  
     containerBg.interactive = true; //这个要有，否者被该模块挡住的别的按钮啥的还会响应，这个有了就被盖住了。
@@ -54,8 +53,6 @@ export default function(app){
       container.getChildByName('portrait').gotoAndStop(n);
       player.gender     = portrait2gender[n] || 0  //这个是刚从别人学来的，比if、else更加高效
       player.portraitId = n 
-      console.log('===>2')
-      console.log(player)
     });
     //获取右箭头实例
     const arrowRight = arrowRightMC();
@@ -67,8 +64,6 @@ export default function(app){
       container.getChildByName('portrait').gotoAndStop(n);
       player.gender = portrait2gender[n] || 0  //这个是刚从别人学来的，比if、else更加高效
       player.portraitId = n 
-      console.log('===>3')
-      console.log(player)
     });
 
     //添加

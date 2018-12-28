@@ -15,17 +15,25 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":100},
 	"sourceSize": {"w":80,"h":100}
+},
+"portrait_03.png":
+{
+	"frame": {"x":160,"y":0,"w":80,"h":100},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":100},
+	"sourceSize": {"w":80,"h":100}
 }},
 "animations": {
-	"portrait": ["portrait_01.png","portrait_02.png"]
+	"portrait": ["portrait_01.png","portrait_02.png","portrait_03.png"]
 },
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "protrait.png",
 	"format": "RGBA8888",
-	"size": {"w":160,"h":100},
+	"size": {"w":240,"h":100},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:8fe9145b128b3ad5300cd4e38f138a50:7a39a6f174ed140a90182ca3b701fafb:5c703c8d1cdfea565d0267747603f43d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:e4a4dbf51be6828dccdc770ab9e1be45:4aefefa040a0688b7aa2322af988d660:5c703c8d1cdfea565d0267747603f43d$"
 }
 }
