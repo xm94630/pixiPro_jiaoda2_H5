@@ -209,6 +209,19 @@ export default function getAllMaterial(app){
       return img;
     }
 
+    //姓名-文字展示渲染
+    ,playerNameMC:function(myName){
+      var txt = new PIXI.Text( myName,{
+        fontSize: 80,
+        fill: 0xc3592f,
+      });
+      txt.x = 100;
+      txt.y = 0;
+      txt.interactive = true;
+      txt.buttonMode = true;
+      txt.name="pageNumber"
+      return txt;
+    }
 
 
 

@@ -12,6 +12,7 @@ export default function(app){
   //其实也是容器，只是按照体量大小，不同的叫法而已。
   const{
     selectPortraitContainer,
+    selectNameContainer
   } = getAllContainer(app);
 
   //获取容器1（游戏首页）
@@ -36,7 +37,8 @@ export default function(app){
       gameExitBtnMC(),
 
       //游戏模块
-      selectPortraitContainer(),
+      //selectPortraitContainer(), //头像选择
+      selectNameContainer()        //姓名选择
     );
     return stage;
   }
