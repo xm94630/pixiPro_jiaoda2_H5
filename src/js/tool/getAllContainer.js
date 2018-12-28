@@ -12,6 +12,8 @@ export default function(app){
 
   //头像选择
   function selectPortraitContainer(){
+    //头像使用第几帧
+    let n = 0;
     //素材
     const{
       portraitMC,
@@ -31,19 +33,26 @@ export default function(app){
     containerBg.width  = container._width;   //注意，这里获取的不是container.width
     containerBg.height = container._height;  
     containerBg.interactive = true; //这个要有，否者被该模块挡住的别的按钮啥的还会响应，这个有了就被盖住了。
+    //获取头像
+    const portrait = portraitMC(container._width/2,container._height/2)
+    const totalFrames = portrait.totalFrames;
     //获取左箭头实例
     const arrowLeft = arrowLeftMC();
     arrowLeft.x = arrowLeft.width/2;
     arrowLeft.y = container._height/2;
     arrowLeft.on('pointerdown', function(){
-      alert(111);
+      n--;
+      if(n<0){n=totalFrames-1;}
+      container.getChildByName('portrait').gotoAndStop(n);
     });
     //获取右箭头实例
     const arrowRight = arrowRightMC();
     arrowRight.x = container._width - arrowRight.width/2;
     arrowRight.y = container._height/2;
     arrowRight.on('pointerdown', function(){
-      alert(222);
+      n--;
+      if(n>totalFrames-1){n=0;}
+      container.getChildByName('portrait').gotoAndStop(n);
     });
 
 
@@ -51,7 +60,7 @@ export default function(app){
     //添加
     container.addChild(
       containerBg, //背景一定要先添加
-      portraitMC(container._width/2,container._height/2),  //头像
+      portrait,
       arrowLeft,
       arrowRight,
     );

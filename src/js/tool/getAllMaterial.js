@@ -180,11 +180,12 @@ export default function getAllMaterial(app){
         frameArr.push(PIXI.Texture.fromFrame( sourceArr[i] ));
       }
       var mc = new PIXI.extras.AnimatedSprite(frameArr);
-      mc.gotoAndStop(1); 
+      mc.gotoAndStop(0); 
       mc.scale.x = mc.scale.y = 3;
       mc.anchor.set(0.5);
       mc.x = x;
       mc.y = y;
+      mc.name = "portrait"
       return mc;
     }
 
