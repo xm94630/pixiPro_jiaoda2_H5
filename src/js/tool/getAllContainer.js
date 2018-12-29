@@ -4,8 +4,7 @@
 
 import getAllMaterial from './getAllMaterial.js'; 
 import player from './playerData.js';
-
-
+import getRandomName from './randomNameGenerator';
 
 export default function(app){
 
@@ -109,7 +108,10 @@ export default function(app){
     btnDice.name="btnDice"
     //交互
     btnDice.on('pointerdown', function(){
-      container.getChildByName('playerName').text = '徐小美丽'
+      let name = getRandomName()
+      container.getChildByName('playerName').text = name
+      player.name = name
+      console.log(player)
     })
     //添加到容器
     container.addChild(

@@ -218,9 +218,8 @@ export default function getAllMaterial(app){
       });
       txt.x = 100;
       txt.y = 0;
-      txt.width=260;
+      //txt.width=260;
       txt.interactive = true;
-      txt.buttonMode = true;
       return txt;
     }
 
@@ -228,16 +227,15 @@ export default function getAllMaterial(app){
     ,btnDiceMC:function(x,y){
       var texture = PIXI.Texture.from( 'btn_dice.png' ) 
       var img = new PIXI.Sprite(texture);            
-      img.interactive = true; 
+      img.interactive = true;
+      img.buttonMode = true; 
       return img;
     }
 
 
 
-
-
   }
-  
+    
   return list;
 }
 

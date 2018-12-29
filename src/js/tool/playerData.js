@@ -5,6 +5,7 @@
 var player = {
   gender:0,     //0为男，1为女
   portraitId:0, //默认是图片1
+  name:"白云天", //默认姓名
 }
 
 
