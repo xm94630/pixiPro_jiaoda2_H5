@@ -54,6 +54,7 @@ export default function(app){
       //游戏模块
       //selectPortraitContainer(), //头像选择
       //selectNameContainer(),     //姓名选择
+      //scrollGameTextContainer(), //游戏背景文字滚动模块
     );
     return stage;
   }
@@ -74,6 +75,11 @@ export default function(app){
     btnOkCon.on('pointerdown', function(){
       stage.visible=false
       app.stage.getChildByName('stage3').visible = true;
+      app.stage.getChildByName('stage3').addChild(
+        //该组件是动态地被添加的，因为它是个滚动的动画，过早加载的话，动画都完成了...
+        //当然，另外一种解决办法就是：在这里才添加动画的ticker，不过效果都一定的，感觉这个更加简单。
+        scrollGameTextContainer(),
+      )
     });
     stage.addChild(
       bgImgMC(),
@@ -90,10 +96,16 @@ export default function(app){
     const stage = new PIXI.Container();  
     stage.width = w;     
     stage.height = h;
-    stage.name = "stage3"          
+    stage.name = "stage3"    
+    let btnOkCon    = btnOkMC()                 //确定按钮
+    btnOkCon.x = stage._width/2 - btnOkCon.width/2;
+    btnOkCon.y = stage._height  - btnOkCon.height/2 - 150;
+    btnOkCon.on('pointerdown', function(){
+      stage.visible=false
+    })
     stage.addChild(
       bgImgMC(),
-      scrollGameTextContainer(),
+      btnOkCon,
     );
 
     return stage;

@@ -130,13 +130,13 @@ export default function(app){
     let storyText = storyTextMC()
     storyText.anchor.set(0.5,0)
     storyText.x = w/2
-    storyText.y = 500
+    storyText.y = 200
     //这个用作遮罩
     let bgImg = bgImgMC()
     bgImg.width = w
-    bgImg.height = h/3
+    bgImg.height = h/2
     bgImg.anchor.set(0.5,0)
-    bgImg.y = 200
+    bgImg.y = 100
     bgImg.x = w/2
     storyText.mask = bgImg
     container.addChild(
@@ -151,7 +151,9 @@ export default function(app){
         app.ticker.remove(scrollTicker);
       }
     }
-    app.ticker.add(scrollTicker);
+    setTimeout(function(){
+      app.ticker.add(scrollTicker);
+    },1000)
     return container;
   }
 
