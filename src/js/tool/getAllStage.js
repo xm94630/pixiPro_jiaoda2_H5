@@ -29,7 +29,9 @@ export default function(app){
     gameExitBtnMC,
     btnOkMC,
     bookMC,
+    pageMC,
     homeBtnMC,
+    bgImgMC,
   } = getAllMaterial(app);
 
   //获取容器1（游戏首页）
@@ -54,7 +56,7 @@ export default function(app){
     return stage;
   }
 
-  //获取容器2（游戏内容页）
+  //场景：头像、姓名确认页
   function stage2(){  
     const stage = new PIXI.Container();  
     stage.width = w;     
@@ -68,10 +70,11 @@ export default function(app){
     btnOkCon.x = stage._width/2 - btnOkCon.width/2;
     btnOkCon.y = stage._height  - btnOkCon.height/2 - 150;
     btnOkCon.on('pointerdown', function(){
-      alert('ok')
+      stage.visible=false
+      app.stage.getChildByName('stage3').visible = true;
     });
     stage.addChild(
-      bookMC(),
+      bgImgMC(),
       homeBtnMC(),
       portraitCon,
       nameCon,
@@ -79,8 +82,23 @@ export default function(app){
     );
     return stage;
   }
+
+  //场景：背景介绍页
+  function stage3(){  
+    const stage = new PIXI.Container();  
+    stage.width = w;     
+    stage.height = h;
+    stage.name = "stage3"              
+    stage.addChild(
+      bgImgMC(),
+    );
+    return stage;
+  }
+
+
   return {
     stage1,
-    stage2
+    stage2,
+    stage3,
   };
 }

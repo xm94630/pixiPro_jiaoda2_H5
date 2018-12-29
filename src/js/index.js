@@ -88,14 +88,20 @@ function setup(xxx,res) {
   mySound && mySound.play();
 
   //获取场景实例、影片剪辑
-  const {stage1,stage2} = getAllStage(app);
+  const {stage1,stage2,stage3} = getAllStage(app);
   const {soundBtnMC}    = getAllMaterial(app);
   
   //舞台显示 (容器挂载)
   app.stage.removeChild(app.stage.getChildByName('stage0')); //移除loading场景（后续不会再用）
-  app.stage.addChild(stage1(),stage2(),soundBtnMC());
+  app.stage.addChild(
+    stage1(),
+    stage2(),
+    stage3(),
+    soundBtnMC(),
+    );
   app.stage.getChildByName('stage1').visible = true;
   app.stage.getChildByName('stage2').visible = false;
+  app.stage.getChildByName('stage3').visible = false;
 
   //使用场景对应的ticker
   myTicker = stage2_ticker;

@@ -241,6 +241,14 @@ export default function getAllMaterial(app){
       return img;
     }
 
+    //绿色背景布
+    ,bgImgMC:function(){
+      var mc = PIXI.Sprite.fromImage("bg2");
+      mc.name = "bgImg";
+      mc.width = w; 
+      mc.height = h; 
+      return mc;
+    }
 
 
   }
