@@ -12,16 +12,20 @@ export default function(app){
   var h = app.view.height;
   var res = PIXI.loader.resources;
 
+  //素材
+  const{
+    playerNameMC,
+    btnDiceMC,
+    portraitMC,
+    arrowLeftMC,
+    arrowRightMC,
+    storyTextMC,
+  } = getAllMaterial(app);
+  
   //头像选择
   function selectPortraitContainer(){
     //头像使用第几帧
     let n = 0;
-    //素材
-    const{
-      portraitMC,
-      arrowLeftMC,
-      arrowRightMC,
-    } = getAllMaterial(app);
     //头像图片和性别的映射关系
     let portrait2gender = {
       "0":0, //前面的0是指第“0”张头像图片，对应值为0（男）
@@ -79,11 +83,6 @@ export default function(app){
 
   //玩家姓名输入
   function selectNameContainer(){
-    //素材
-    const{
-      playerNameMC,
-      btnDiceMC
-    } = getAllMaterial(app);
 
     //容器
     const container = new PIXI.Container();  
@@ -122,8 +121,23 @@ export default function(app){
     return container;
   }
 
+  function scrollGameTextContainer(){
+    const container = new PIXI.Container();  
+    container.width = w;     
+    container.height = h;
+    container.name = "stage3"          
+    let storyText = storyTextMC()
+    storyText.anchor.set(0.5,0)
+    storyText.x = w/2
+    container.addChild(
+      storyText,
+    )
+    return container;
+  }
+
   return {
     selectPortraitContainer,
     selectNameContainer,
+    scrollGameTextContainer
   };
 }
