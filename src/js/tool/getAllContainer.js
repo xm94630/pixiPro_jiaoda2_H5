@@ -83,6 +83,7 @@ export default function(app){
     //素材
     const{
       playerNameMC,
+      btnDiceMC
     } = getAllMaterial(app);
 
     //容器
@@ -98,11 +99,23 @@ export default function(app){
     containerBg.width  = container._width;   //注意，这里获取的不是container.width
     containerBg.height = container._height;  
     containerBg.interactive = true; //这个要有，否者被该模块挡住的别的按钮啥的还会响应，这个有了就被盖住了。
-    
+    //名字文本
+    let playerName = playerNameMC()
+    playerName.text = "白云天"
+    playerName.name = "playerName"
+    //骰子
+    let btnDice=btnDiceMC()
+    btnDice.x = container._width-btnDice.width;
+    btnDice.name="btnDice"
+    //交互
+    btnDice.on('pointerdown', function(){
+      container.getChildByName('playerName').text = '徐小美丽'
+    })
     //添加到容器
     container.addChild(
-      containerBg,           //背景一定要先添加
-      playerNameMC('白云天天')  //默认名字
+      containerBg,  //背景一定要先添加
+      playerName,   //默认名字
+      btnDice,
     );
     return container;
   }

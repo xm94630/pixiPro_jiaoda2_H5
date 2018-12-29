@@ -40,7 +40,9 @@
     ,"arrow.json": {
         "arrow": [
             "arrow_left.png",
-            "arrow_right.png"
+            "arrow_right.png",
+            "btn_dice.png",
+            "btn_ok.png"
         ]
     }
 }
