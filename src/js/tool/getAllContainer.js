@@ -134,7 +134,7 @@ export default function(app){
     //这个用作遮罩
     let bgImg = bgImgMC()
     bgImg.width = w
-    bgImg.height = h/2
+    bgImg.height = h/3
     bgImg.anchor.set(0.5,0)
     bgImg.y = 200
     bgImg.x = w/2
@@ -143,11 +143,15 @@ export default function(app){
       storyText,
       bgImg,
     )
-    app.ticker.add(function(delta){
-      if(storyText.y > -storyText.height + 20 ){
-        storyText.y = storyText.y-1/2;
+    function scrollTicker(delta){
+      if(storyText.y > -storyText.height){
+        storyText.y = storyText.y-1;
+      }else{
+        console.log('移除用于文字滚动动画的ticker')
+        app.ticker.remove(scrollTicker);
       }
-    });
+    }
+    app.ticker.add(scrollTicker);
     return container;
   }
 
