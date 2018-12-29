@@ -232,6 +232,15 @@ export default function getAllMaterial(app){
       return img;
     }
 
+    //ok按钮
+    ,btnOkMC:function(x,y){
+      var texture = PIXI.Texture.from( 'btn_ok.png' ) 
+      var img = new PIXI.Sprite(texture);            
+      img.interactive = true;
+      img.buttonMode = true; 
+      return img;
+    }
+
 
 
   }
