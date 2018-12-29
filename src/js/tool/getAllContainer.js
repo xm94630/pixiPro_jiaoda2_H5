@@ -20,6 +20,7 @@ export default function(app){
     arrowLeftMC,
     arrowRightMC,
     storyTextMC,
+    bgImgMC,
   } = getAllMaterial(app);
   
   //头像选择
@@ -129,9 +130,24 @@ export default function(app){
     let storyText = storyTextMC()
     storyText.anchor.set(0.5,0)
     storyText.x = w/2
+    storyText.y = 500
+    //这个用作遮罩
+    let bgImg = bgImgMC()
+    bgImg.width = w
+    bgImg.height = h/2
+    bgImg.anchor.set(0.5,0)
+    bgImg.y = 200
+    bgImg.x = w/2
+    storyText.mask = bgImg
     container.addChild(
       storyText,
+      bgImg,
     )
+    app.ticker.add(function(delta){
+      if(storyText.y > -storyText.height + 20 ){
+        storyText.y = storyText.y-1/2;
+      }
+    });
     return container;
   }
 

@@ -95,6 +95,7 @@ export default function(app){
       bgImgMC(),
       scrollGameTextContainer(),
     );
+
     return stage;
   }
 
