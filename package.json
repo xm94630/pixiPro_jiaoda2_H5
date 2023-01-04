@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/xm94630/pixiPro_jiaoda#readme",
   "devDependencies": {
-    "@babel/core": "^7.1.0",
+    "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.2",
     "clean-webpack-plugin": "^0.1.19",
